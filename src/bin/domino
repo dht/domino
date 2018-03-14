@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+'use strict';
+
+const path = require('path');
+const args = process.argv.slice(2);
+const main = require('../index');
+const verb = args[0];
+
+
+(async () => {
+    switch (verb) {
+        case 'scan':
+            await main.scan(path.resolve('.'));
+            break;
+
+        case 'yarn':
+            await main.yarn(path.resolve('.'));
+            break;
+
+        default:
+            await main.update(path.resolve('.'));
+    }
+
+    process.exit(0);
+
+})();
